@@ -1,0 +1,123 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><strong>Cadastro de Produtos</strong></h1>
+</div>
+
+<div *ngIf="mensagemSucesso" class="alert alert-success mt-2">
+  <strong>Sucesso!</strong> {{mensagemSucesso}}
+</div>
+
+<div *ngIf="mensagemErro" class="alert alert-danger mt-2">
+  <strong>Erro!</strong> {{mensagemErro}}
+</div>
+
+<div class="row">
+  <div class="col-xl-12 col-md-12 mb-12">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+
+        <form [formGroup]="formCadastro" (ngSubmit)="cadastrarProduto()">
+
+          <div class="row">
+            <div class="col-md-6">
+              <label>Nome do Produto:</label>
+              <input type="text" class="form-control" formControlName="nome" />
+              <span *ngIf="form.nome.touched && form.nome.invalid">
+                <span *ngIf="form.nome.errors.required" class="text-danger">
+                  <i class="fa fa-exclamation-circle"></i> Por favor, informe o nome do produto.
+                </span>
+                <span *ngIf="form.nome.errors.pattern" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Caracteres inválidos para este campo.
+                </span>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <label>Preço:</label>
+              <input type="text" class="form-control" formControlName="preco" />
+              <span *ngIf="form.preco.touched && form.preco.invalid">
+                <span *ngIf="form.preco.errors.required" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Por favor, informe o preço do produto.
+                </span>
+                <span *ngIf="form.preco.errors.pattern" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Caracteres inválidos para este campo.
+                </span>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <label>Quantidade:</label>
+              <input type="text" class="form-control" formControlName="quantidade" />
+              <span *ngIf="form.quantidade.touched && form.quantidade.invalid">
+                <span *ngIf="form.quantidade.errors.required" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Por favor, informe a quantidade do produto.
+                </span>
+                <span *ngIf="form.quantidade.errors.pattern" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Caracteres inválidos para este campo.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <br />
+
+          <div class="row">
+            <div class="col-md-4">
+              <label>Data de Compra:</label>
+              <input type="date" class="form-control" formControlName="dataCompra" />
+              <span *ngIf="form.dataCompra.touched && form.dataCompra.invalid">
+                <span *ngIf="form.dataCompra.errors.required" class="text-danger">
+                  <i class="fa fa-exclamation-circle"></i> Por favor, informe a data de compra do
+                  produto.
+                </span>
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label>Categoria:</label>
+              <select class="form-control" formControlName="categoria">
+                <option value="">Escolha uma opção
+                </option>
+                <option *ngFor="let item of categorias" value="{{item}}">
+                  {{item | uppercase}}
+                </option>
+              </select>
+              <span *ngIf="form.categoria.touched && form.categoria.invalid">
+                <span *ngIf="form.categoria.errors.required" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Por favor, selecione a categoria do
+                  produto.
+                </span>
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label>Fornecedor:</label>
+              <select class="form-control" formControlName="fornecedor">
+                <option value="">Escolha uma opção
+                </option>
+                <option *ngFor="let item of fornecedores" value="{{item.idFornecedor}}">
+                  {{item.nome | uppercase}}
+                  (CNPJ: {{item.cnpj}})
+                </option>
+              </select>
+              <span *ngIf="form.fornecedor.touched && form.fornecedor.invalid">
+                <span *ngIf="form.fornecedor.errors.required" class="text-danger">
+                  <i class="fa fa-exclamation-circle">
+                  </i> Por favor, selecione o fornecedor do
+                  produto.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <br />
+
+          <input [disabled]="!formCadastro.valid" type="submit" value="Cadastrar Produto" class="btn btn-success" />
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

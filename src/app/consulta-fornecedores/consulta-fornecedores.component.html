@@ -1,0 +1,143 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"><strong>Consulta de Fornecedores</strong></h1>
+</div>
+
+<div *ngIf="mensagemSucessoExclusao" class="alert alert-success">
+  <strong>Sucesso!</strong> {{mensagemSucessoExclusao}}
+</div>
+
+<div *ngIf="mensagemErroExclusao" class="alert alert-danger">
+  <strong>Erro!</strong> {{mensagemErroExclusao}}
+</div>
+
+<div class="row">
+  <div class="col-xl-12 col-md-12 mb-12">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="pesquisa" placeholder="Pesquisar Fornecedores" />
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>Nome do Fornecedor</th>
+              <th>CNPJ</th>
+              <th width="100">Operações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let item of fornecedores | filter : pesquisa | paginate : { itemsPerPage : 5, currentPage : page }">
+              <td>{{item.nome | uppercase}}</td>
+              <td>{{item.cnpj}}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" (click)="obterFornecedor
+                                          (item.idFornecedor)" data-target="#janela_exclusao" data-toggle="modal">
+                  <i class="fa fa-trash"></i>
+                </button>
+                &nbsp;
+                <button class="btn btn-primary btn-sm" (click)="obterFornecedor
+                                           (item.idFornecedor)" data-target="#janela_edicao" data-toggle="modal">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                Quantidade de fornecedores:
+                {{fornecedores.length}}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Anterior" nextLabel="Próximo">
+        </pagination-controls>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Janela modal para exclusao de fornecedor -->
+<div id="janela_exclusao" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Excluir Fornecedor</h5>
+      </div>
+      <div class="modal-body">
+
+        <p>Deseja realmente excluir o fornecedor selecionado?</p>
+
+        Nome do Fornecedor: <strong>{{fornecedor.nome}}</strong>
+        <br />
+        CNPJ: <strong>{{fornecedor.cnpj}}</strong>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Encerrar</button>
+        <button type="button" class="btn btn-danger" (click)="excluirFornecedor(fornecedor.idFornecedor)">
+          <i class="fa fa-trash"></i> Confirmar Exclusão
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Janela modal para exclusao de fornecedor -->
+<div id="janela_edicao" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atualizar Fornecedor</h5>
+      </div>
+      <div class="modal-body">
+
+        <div *ngIf="mensagemSucessoEdicao" class="alert alert-success">
+          <strong>Sucesso!</strong> {{mensagemSucessoEdicao}}
+        </div>
+
+        <div *ngIf="mensagemErroEdicao" class="alert alert-danger">
+          <strong>Erro!</strong> {{mensagemErroEdicao}}
+        </div>
+
+        <form #formEdicao="ngForm" (submit)="atualizarFornecedor(formEdicao)">
+
+          <!-- campo oculto -->
+          <input type="hidden" name="idFornecedor" [(ngModel)]="fornecedor.idFornecedor" />
+
+          <div class="row">
+            <div class="col-md-8">
+              <label>Nome do Fornecedor:</label>
+              <input type="text" class="form-control" name="nome" [(ngModel)]="fornecedor.nome" />
+            </div>
+            <div class="col-md-4">
+              <label>CNPJ:</label>
+              <input type="text" class="form-control" readonly name="cnpj" [(ngModel)]="fornecedor.cnpj" />
+            </div>
+          </div>
+
+          <br />
+
+          <div class="text-right">
+            <button type="button" class="btn btn-light" data-dismiss="modal">Encerrar</button>
+            &nbsp;
+            <button type="submit" class="btn btn-primary">
+              <i class="fa fa-edit"></i> Salvar Alterações
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
