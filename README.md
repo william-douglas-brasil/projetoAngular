@@ -1,27 +1,81 @@
-# ProjetoAngular01
+# Tema do projeto: 
+Front End do Sistema de controle de fornecedores e produtos.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+## 🚀 Resumo: 
+O sistema deverá permitir ao usuário gerenciar dados de fornecedores
+e de produtos relacionados a cada fornecedor e permitir consultas.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#  📋 Pré-requisitos
+Antes de começar, você vai precisar ter instalado a IDE VS Code, o compilador NodeJs,
+Angular(Framework) para o desenvolvimento front end e o GitBash para rodar o projeto.
 
-## Code scaffolding
+# 🛠️ Tecnologias
+As seguintes ferramentas foram usadas na construção do projeto:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Front End 
 
-## Build
+•	VS Code(IDE)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+•	Angular (Desenvolvimento FRONTEND)
 
-## Running unit tests
+•	NodeJs (Compilador para a linguagem TypeScript)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+•	GitBash (Terminal de linhas comando)
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+# 🖍📐 Arquitetura back end e front end
+![API](https://github.com/william-douglas-brasil/projetoAngular/blob/main/assets/API.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# 🎨 Layout
+ 
+![API](https://github.com/william-douglas-brasil/projetoAngular/blob/main/assets/ApiLogin.png) 
+![API](https://github.com/william-douglas-brasil/projetoAngular/blob/main/assets/ApiFormFornecedor.png)
+![API](https://github.com/william-douglas-brasil/projetoAngular/blob/main/assets/ApiFormProduto.png)
+![API](https://github.com/william-douglas-brasil/projetoAngular/blob/main/assets/ApiGetFornecedor.png)
+![API](https://github.com/william-douglas-brasil/projetoAngular/blob/main/assets/ApiGetProduto.png)
+
+# 📦 Como executar o projeto
+
+## API(Back End)
+```bash
+# clonar repositório
+git clone https://github.com/william-douglas-brasil/projetoSpringApi01
+
+# abrir o CMD
+
+# entrar na pasta do projeto back end
+cd backend
+
+# Fazer o BUILD do projeto
+mvnw clean package
+
+#executar o projeto
+java -jar target/projetoSpringApi01-0.0.1-SNAPSHOT.jar
+
+```
+
+## API(Front End)
+```bash
+# Abir o GITBASH na pasta do projetoAngular
+
+# comandos:
+code .
+
+ng s
+
+# no navegador digitar http://localhost:4200
+
+```
+
+# ✒️ Autor
+
+William Douglas da Silva dos Santos
+
+[![LinkedIn Badge](https://img.shields.io/badge/-William%20Douglas-6495ED?style=flat-square&labelColor=6495ED&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/william-douglas-587abb123/)](https://www.linkedin.com/in/william-douglas-587abb123/)
+
+
+# 📄 Licença
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/william-douglas-brasil/projetoAngular/blob/main/LICENSE)
